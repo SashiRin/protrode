@@ -2,17 +2,13 @@
 * ID: LeetCode 2
 * Link: https://leetcode.com/problems/add-two-numbers/
 * Author: SashiRin
-* Date: 2018-04-04
-* Time: 73MS
+* Date: 2018/04/04
+* Update: 2018/04/07
+* Time: 63MS
 * Memory: N/A
 * Note: N/A
 */
-#include <cstring>
 #include <iostream>
-#include <string>
-#include <vector>
-#include <algorithm>
-#include <unordered_map>
 
 using namespace std;
 
@@ -28,73 +24,44 @@ class Solution
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2)
     {
-        ListNode* l3 = new ListNode(0);
-        ListNode* p = l3;
-        int cnt = 0;
-        ListNode* last = NULL;
-        while (l1 != NULL && l2 != NULL)
+        ListNode* ans = new ListNode(0);
+        ListNode* curr = ans;
+        int carry = 0;
+        int l1_val = 0;
+        int l2_val = 0;
+        int sum = 0;
+        while (l1 != NULL || l2 != NULL)
         {
-            p->val = (l1->val + l2->val + cnt) % 10;
-            cnt = (l1->val + l2->val + cnt) / 10;
-            p->next = new ListNode(0);
-            last = p;
-            p = p->next;
-            l1 = l1->next;
-            l2 = l2->next;
+            l1_val = l1 != NULL ? l1->val : 0;
+            l2_val = l2 != NULL ? l2->val : 0;
+            sum = (l1_val + l2_val + carry);
+            carry = sum / 10;
+            curr->next = new ListNode(sum % 10);
+            curr = curr->next;
+            l1 = l1 != NULL ? l1->next : NULL;
+            l2 = l2 != NULL ? l2->next : NULL;
         }
-        if (l1 == NULL && l2 != NULL)
+        if (carry > 0)
         {
-            p = listCopy(l2, p, cnt);
+            curr->next = new ListNode(carry);
         }
-        else if (l1 != NULL && l2 == NULL)
-        {
-            p = listCopy(l1, p, cnt);
-        }
-        else
-        {
-            if (cnt == 1)
-            {
-                p->val = 1;
-            }
-            else
-            {
-                last->next = NULL;
-            }
-        }
-        return l3;
-    }
-private:
-    ListNode* listCopy(ListNode *l, ListNode *res, int cnt)
-    {
-        ListNode* p = res;
-        ListNode* last = NULL;
-        while (l != NULL)
-        {
-            p->val = (l->val + cnt) % 10;
-            cnt = (l->val + cnt) / 10;
-            p->next = new ListNode(0);
-            last = p;
-            p = p->next;
-            l = l->next;
-        }
-        if (cnt == 1)
-        {
-            p->val = 1;
-        }
-        else
-        {
-            last->next = NULL;
-        }
-        return res;
+        return ans->next;
     }
 };
 
 int main(int argc, char** argv)
 {
     Solution solution;
-    ListNode *l1 = new ListNode(1);
-    l1->next = new ListNode(8);
-    ListNode* l2 = new ListNode(0);
+    ListNode *l1 = new ListNode(2);
+    ListNode *curr = l1;
+    curr->next = new ListNode(4);
+    curr = curr->next;
+    curr->next = new ListNode(3);
+    ListNode* l2 = new ListNode(5);
+    curr = l2;
+    curr->next = new ListNode(6);
+    curr = curr->next;
+    curr->next = new ListNode(4);
     ListNode* l3 = solution.addTwoNumbers(l1, l2);
     return 0;
 }
