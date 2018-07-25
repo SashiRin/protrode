@@ -1,6 +1,6 @@
 /*
 * ID: LeetCode 859
-* Link: https://leetcode.com/problems/buddy-strings/description/
+* Link: https://leetcode.com/problems/buddy-strings/
 * Author: SashiRin
 * Date: 2018-07-20
 * Note: Using set for duplicate elements detection.
