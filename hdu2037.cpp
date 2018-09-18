@@ -1,6 +1,6 @@
 /*
 * ID: HDU 2037
-* Link: http://acm.hdu.edu.cn/submit.php?pid=2037
+* Link: http://acm.hdu.edu.cn/showproblem.php?pid=2037
 * Author: Neroldy
 * Date: 2016-11-17
 * Time: 0MS
