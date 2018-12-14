@@ -18,9 +18,11 @@ int main() {
     int x;
     cin >> x;
     int ans = 1;
-    for (int j = 1; j <= x; ++j) {
-        for (int i = 2; i <= x; ++i) {
-            int tmp = mypow(j, i);
+    int pMax = log2(x);
+    int bMax = sqrt(x);
+    for (int b = 2; b <= bMax; ++b) {
+        for (int p = 2; p <= pMax; ++p) {
+            int tmp = mypow(b, p);
             if (tmp <= x) ans = max(tmp, ans);
         }
     }
