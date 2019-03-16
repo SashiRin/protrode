@@ -1,2 +1,2 @@
 PROgramming TRaining Online juDgE  
-status: 120/1000
+status: 110/1000
